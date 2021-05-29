@@ -10,8 +10,6 @@ int main(void)
         SFML_Lib *graphLib = new SFML_Lib;
         graphLib->create_window();
         planner.run(graphLib);
-        //planner.simulate();
-        exit(0);
     } catch(const std::exception& e) {
         std::cerr << e.what() << '\n';
         return(84);
