@@ -41,21 +41,21 @@ void SFML_Lib::clear()
 void SFML_Lib::draw_map(std::vector<std::string> map)
 {    
     for (unsigned int i = 0; i != map.size(); i++) {
-        for (unsigned int j = 0; j != map[j].length() - 1; j++) {
+        for (unsigned int j = 0; j != map[i].length(); j++) {
             if (map[i][j] == 'N') {
-                _pop.setPosition(j * 100, i * 100);
+                _pop.setPosition(j * 100 + 775, i * 100 + 200);
                 _pop.setFillColor(sf::Color::Green);
                 _window.draw(_pop);
             } else if (map[i][j] == 'X') {
-                _pop.setPosition(j * 100, i * 100);
+                _pop.setPosition(j * 100 + 775, i * 100 + 200);
                 _pop.setFillColor(sf::Color::Red);
                 _window.draw(_pop);
             } else if (map[i][j] == 'D') {
-                _pop.setPosition(j * 100, i * 100);
+                _pop.setPosition(j * 100 + 775, i * 100 + 200);
                 _pop.setFillColor(sf::Color::Black);
                 _window.draw(_pop);
             } else if (map[i][j] == 'V') {
-                _pop.setPosition(j * 100, i * 100);
+                _pop.setPosition(j * 100 + 775, i * 100 + 200);
                 _pop.setFillColor(sf::Color::Cyan);
                 _window.draw(_pop);
             }
