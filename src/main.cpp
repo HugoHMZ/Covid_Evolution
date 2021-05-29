@@ -6,7 +6,8 @@ int main(void)
 {
     try {
         CovidEvolution planner;
-        planner.run();
+        //planner.run();
+        planner.simulate();
     } catch(const std::exception& e) {
         std::cerr << e.what() << '\n';
         return(84);
