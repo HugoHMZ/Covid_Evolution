@@ -19,6 +19,10 @@ class CovidEvolution {
         ~CovidEvolution();
         void run(SFML_Lib *);
         std::pair<std::string, int> select_country(SFML_Lib *);
+        void simulate();
+        void compute(std::vector<char>, int, int);
+        std::vector<char> getCircle(int y, int x);
+        bool in_range(int, int, int);
 
     protected:
     private:
