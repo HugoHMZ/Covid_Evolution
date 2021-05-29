@@ -4,7 +4,7 @@
 
 SFML_Lib::SFML_Lib()
 {
-    _coord = {{200, 100}, {200, 200}, {200, 300}, {200, 400}, {200, 500}};
+    _coord = {{350, 200}, {350, 350}, {350, 500}, {350, 650}, {350, 800}};
     if (!_background_t.loadFromFile("./assets/background.jpg"))
         exit(84);
     if (!_font.loadFromFile("./assets/aokay.ttf"))
@@ -14,10 +14,7 @@ SFML_Lib::SFML_Lib()
     _window.setFramerateLimit(60);
     _text.setCharacterSize(50);
     _text.setFont(_font);
-    _pop.setSize(sf::Vector2f(100, 50));
-    _pop.setOutlineColor(sf::Color::Red);
-    _pop.setOutlineThickness(5);
-    _pop.setPosition(10, 20);
+    _pop.setSize(sf::Vector2f(64, 64));
 }
 
 void SFML_Lib::create_window()
@@ -44,15 +41,24 @@ void SFML_Lib::clear()
 void SFML_Lib::draw_map(std::vector<std::string> map)
 {    
     for (unsigned int i = 0; i != map.size(); i++) {
-        for (unsigned int j = 0; j != map[j].length(); j++) {
-            if (map[i][j] == 'N')
-                std::cout << "Oui" << std::endl;
-            else if (map[i][j] == 'C')
-                std::cout << "Non" << std::endl;
-            else if (map[i][j] == 'D')
-                std::cout << "Ouais" << std::endl;
-            else
-                std::cout << "Nan" << std::endl;
+        for (unsigned int j = 0; j != map[j].length() - 1; j++) {
+            if (map[i][j] == 'N') {
+                _pop.setPosition(j * 100, i * 100);
+                _pop.setFillColor(sf::Color::Green);
+                _window.draw(_pop);
+            } else if (map[i][j] == 'X') {
+                _pop.setPosition(j * 100, i * 100);
+                _pop.setFillColor(sf::Color::Red);
+                _window.draw(_pop);
+            } else if (map[i][j] == 'D') {
+                _pop.setPosition(j * 100, i * 100);
+                _pop.setFillColor(sf::Color::Black);
+                _window.draw(_pop);
+            } else if (map[i][j] == 'V') {
+                _pop.setPosition(j * 100, i * 100);
+                _pop.setFillColor(sf::Color::Cyan);
+                _window.draw(_pop);
+            }
         }
     }
 }

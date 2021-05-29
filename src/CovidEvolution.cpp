@@ -19,18 +19,23 @@ CovidEvolution::~CovidEvolution()
 {
 }
 
-std::pair<std::string, int> CovidEvolution::select_country(SFML_Lib *graphLib)
+std::pair<std::string, int> CovidEvolution::select_city(SFML_Lib *graphLib)
 {
     int input;
 
     while (input != 2) {
         graphLib->draw_menu();
         input = graphLib->getInput();
+        graphLib->disp_text(680, 30, "PLEASE CHOOSE A CITY :", "YELLOW");
+        graphLib->disp_text(750, 100, "(CITY/POPULATION)", "YELLOW");
         for (int i = 0; i < (int)_cities.size(); i++) {
-            if (_current == i)
-                graphLib->disp_text(graphLib->get_coord(i, 1), graphLib->get_coord(i, 2), _cities[i].first, "RED");
-            else
+            if (_current == i) {
+                graphLib->disp_text(graphLib->get_coord(i, 1), graphLib->get_coord(i, 2), _cities[i].first, "GREEN");
+                graphLib->disp_text(graphLib->get_coord(i, 1) + 1000, graphLib->get_coord(i, 2), std::to_string(_cities[i].second), "GREEN");
+            } else {
                 graphLib->disp_text(graphLib->get_coord(i, 1), graphLib->get_coord(i, 2), _cities[i].first, "WHITE");
+                graphLib->disp_text(graphLib->get_coord(i, 1) + 1000, graphLib->get_coord(i, 2), std::to_string(_cities[i].second), "WHITE");
+            }
         }
         if (input == 5 && _current >= 1)
             _current--;
@@ -50,10 +55,16 @@ std::pair<std::string, int> CovidEvolution::select_country(SFML_Lib *graphLib)
 
 void CovidEvolution::run(SFML_Lib *graphLib)
 {
-    std::pair<std::string, int> country;
+    std::pair<std::string, int> city;
 
-    country = select_country(graphLib);
-    std::cout << country.first << std::endl;
+    city = select_city(graphLib);
+    while (graphLib->getInput() != 2) {
+        graphLib->draw_menu();
+        graphLib->draw_map(_map);
+        graphLib->update();
+        graphLib->clear();
+    }
+    std::cout << city.first << std::endl;
 }
 
 bool CovidEvolution::in_range(int y, int x, int line)

@@ -19,6 +19,7 @@ public:
     void clear();
     void update();
     int get_coord(int, int);
+
 protected:
 private:
     std::vector<std::pair<int, int>> _coord;
