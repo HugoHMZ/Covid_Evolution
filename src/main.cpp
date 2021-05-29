@@ -1,13 +1,15 @@
 #include <iostream>
 #include "../include/Exceptions.hpp"
 #include "../include/CovidEvolution.hpp"
+#include "../include/SFML.hpp"
 
 int main(void)
 {
     try {
         CovidEvolution planner;
-        //planner.run();
-        planner.simulate();
+        SFML_Lib *graphLib = new SFML_Lib;
+        graphLib->create_window();
+        //planner.run(graphLib);
     } catch(const std::exception& e) {
         std::cerr << e.what() << '\n';
         return(84);

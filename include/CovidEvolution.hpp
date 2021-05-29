@@ -11,16 +11,14 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include "SFML.hpp"
 
 class CovidEvolution {
     public:
         CovidEvolution();
         ~CovidEvolution();
-        void run();
-        void simulate();
-        void compute(std::vector<char>, int, int);
-        std::vector<char> getCircle(int y, int x);
-        bool in_range(int, int, int);
+        void run(SFML_Lib *);
+        std::pair<std::string, int> select_country(SFML_Lib *);
 
     protected:
     private:

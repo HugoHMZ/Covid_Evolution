@@ -20,10 +20,11 @@ RM              =       rm -f
 NAME            =       covidEvolution
 
 CXXFLAGS	+=	-I./core/includes -I./include -ggdb3
-CXXFLAGS	+=	-Wextra -Wall -W
+CXXFLAGS	+=	-Wextra -Wall -W -lsfml-graphics -lsfml-window -lsfml-system
 
 S_SRC             =       src/main.cpp \
-						  src/CovidEvolution.cpp
+						  src/CovidEvolution.cpp \
+						  src/SFML.cpp
 
 OBJ             =       $(S_SRC:.cpp=.o)
 
