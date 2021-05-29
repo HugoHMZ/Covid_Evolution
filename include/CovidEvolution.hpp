@@ -11,12 +11,14 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include "SFML.hpp"
 
 class CovidEvolution {
     public:
         CovidEvolution();
         ~CovidEvolution();
-        void run();
+        void run(SFML_Lib *);
+        std::pair<std::string, int> select_country(SFML_Lib *);
 
     protected:
     private:

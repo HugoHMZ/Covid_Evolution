@@ -12,25 +12,39 @@ CovidEvolution::~CovidEvolution()
 {
 }
 
-void CovidEvolution::run()
+std::pair<std::string, int> CovidEvolution::select_country(SFML_Lib *graphLib)
 {
-    std::string input;
+    int input;
 
-    std::cout << _cities[_current].first << "  " << _cities[_current].second << " residents selected" <<std::endl;
-    while (std::getline(std::cin, input)) {
-        if (input.empty() || input.length() != 1 || (input != "+" && input != "-"))
-            continue;
-        if (input == "+" && (long unsigned int) (_current + 1) <= _cities.size() - 1)
-            _current++;
-        else if (input == "-" && _current - 1 >= 0){
+    while (input != 2) {
+        graphLib->draw_menu();
+        input = graphLib->getInput();
+        for (int i = 0; i < (int)_cities.size(); i++) {
+            if (_current == i)
+                graphLib->disp_text(graphLib->get_coord(i, 1), graphLib->get_coord(i, 2), _cities[i].first, "RED");
+            else
+                graphLib->disp_text(graphLib->get_coord(i, 1), graphLib->get_coord(i, 2), _cities[i].first, "WHITE");
+        }
+        if (input == 5 && _current >= 1)
             _current--;
-        }
-        else {
-            if (input == "+" && (long unsigned int) (_current + 1) > _cities.size() - 1)
-                _current = 0;
-            else if (input == "-" && _current - 1 == -1)
-                _current = _cities.size() - 1;
-        }
-        std::cout << _cities[_current].first << "  " << _cities[_current].second << " residents selected" <<std::endl;
+        else if (input == 6 && _current < 4)
+            _current++;
+        else if (input == 5 && _current == 4)
+            _current = 0;
+        else if (input == 6 && _current - 1 == -1)
+            _current = _cities.size() - 1;
+        else
+            _current = _current;
+        graphLib->update();
+        graphLib->clear();
     }
+    return (_cities[_current]);
+}
+
+void CovidEvolution::run(SFML_Lib *graphLib)
+{
+    std::pair<std::string, int> country;
+
+    country = select_country(graphLib);
+    std::cout << country.first << std::endl;
 }
