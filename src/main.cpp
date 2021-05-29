@@ -11,6 +11,7 @@ int main(void)
         graphLib->create_window();
         planner.run(graphLib);
         //planner.simulate();
+        exit(0);
     } catch(const std::exception& e) {
         std::cerr << e.what() << '\n';
         return(84);

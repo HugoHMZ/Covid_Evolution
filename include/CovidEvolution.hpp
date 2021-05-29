@@ -33,6 +33,9 @@ class CovidEvolution {
         int _height;
         int _width;
         int _alive;
+
+        int _clock;
+        int _counter;
 };
 
 #endif /* !COVIDEVOLUTION_HPP_ */
